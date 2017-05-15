@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+import {
+ GoogleMaps,
+} from '@ionic-native/google-maps';
 import { RestaurantsPage } from './restaurants';
 
 @NgModule({
@@ -11,6 +14,9 @@ import { RestaurantsPage } from './restaurants';
   ],
   exports: [
     RestaurantsPage,
+  ],
+  providers: [
+    GoogleMaps,
   ],
 })
 export class RestaurantsPageModule {}

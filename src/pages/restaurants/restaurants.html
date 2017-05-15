@@ -11,5 +11,24 @@
 
 
 <ion-content padding>
-
+  <div padding>
+    <ion-segment [(ngModel)]="displayType">
+      <ion-segment-button value="map">
+        Map
+      </ion-segment-button>
+      <ion-segment-button value="list">
+        List
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="displayType">
+    <ion-list *ngSwitchCase="'list'">
+      <ion-item *ngFor="let restaurant of restaurants">
+        <h2>{{restaurant.address}}</h2>
+        <p>{{restaurant.phone}}</p>
+        <button ion-button clear item-right>Call</button>
+      </ion-item>
+    </ion-list>
+    <div *ngSwitchCase="'map'" id="restaurants-map"></div>
+  </div>
 </ion-content>
