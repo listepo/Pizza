@@ -2,7 +2,6 @@
   "extends": "tslint:latest",
   "rules": {
     "quotemark": [true, "single", "avoid-escape"],
-    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
     "ordered-imports": [false],
     "object-literal-sort-keys": false
   },
