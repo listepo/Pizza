@@ -10,10 +10,10 @@
       <button menuClose ion-item (click)="openPage('MenuPage')">
         Menu
       </button>
-      <button menuClose ion-item (click)="openPage('AuthPage')">
+      <button *ngIf="!isLoggedIn" menuClose ion-item (click)="openPage('AuthPage')">
         Sign In or Sign Up
       </button>
-      <button menuClose ion-item (click)="openPage('ProfilePage')">
+      <button *ngIf="isLoggedIn" menuClose ion-item (click)="openPage('ProfilePage')">
         Profile
       </button>
       <button menuClose ion-item (click)="openPage('MyOrdersPage')">
@@ -25,7 +25,7 @@
       <button menuClose ion-item (click)="openPage('RestaurantsPage')">
         Restaurants
       </button>
-      <button menuClose ion-item (click)="signOut()">
+      <button *ngIf="isLoggedIn" menuClose ion-item (click)="signOut()">
         Sign Out
       </button>
     </ion-list>

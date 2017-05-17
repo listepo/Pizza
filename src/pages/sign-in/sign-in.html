@@ -13,20 +13,29 @@
 
 
 <ion-content padding>
-  <ion-list>
-
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-  </ion-list>
-  <div padding>
-    <button ion-button color="primary" block>Enter</button>
-  </div>
+  <form [formGroup]="signInForm" (ngSubmit)="signIn()" novalidate>
+    <ion-list>
+      
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <div *ngIf="hasError('email', 'required')">
+        <div padding>Email is required</div>
+      </div>
+      <div *ngIf="hasError('email', 'email')">
+        <div padding>Invalid email</div>
+      </div>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <div *ngIf="hasError('password', 'required')">
+        <div padding>Password is required</div>
+      </div>
+    </ion-list>
+    <div padding>
+      <button type="submit" ion-button color="primary" block [disabled]="signInForm.invalid">Enter</button>
+    </div>
+  </form>
 </ion-content>

@@ -3,19 +3,29 @@ import { Platform, Nav, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AuthProvider } from '../providers/auth/auth';
+
 @Component({
   templateUrl: 'app.html',
 })
 export class MyApp {
   public rootPage: any = 'AuthPage';
   @ViewChild(Nav) private nav: Nav;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public menu: MenuController) {
+  public get isLoggedIn() {
+    return this.authProvider.isLoggedIn;
+  }
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    public menu: MenuController,
+    public authProvider: AuthProvider,
+    ) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+      this.authProvider.afAuth.authState.subscribe(() => {
+        statusBar.styleDefault();
+        splashScreen.hide();
+      });
     });
   }
 
@@ -24,6 +34,6 @@ export class MyApp {
   }
 
   public signOut() {
-    console.log('signOut');
+    this.authProvider.afAuth.auth.signOut();
   }
 }

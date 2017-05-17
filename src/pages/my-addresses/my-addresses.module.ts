@@ -10,7 +10,7 @@ import { MyAddressesPage } from './my-addresses';
     IonicPageModule.forChild(MyAddressesPage),
   ],
   exports: [
-    MyAddressesPage
-  ]
+    MyAddressesPage,
+  ],
 })
 export class MyAddressesPageModule {}

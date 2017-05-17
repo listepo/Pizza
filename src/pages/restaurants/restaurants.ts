@@ -7,7 +7,6 @@ import {
  LatLng,
  CameraPosition,
  MarkerOptions,
- Marker,
 } from '@ionic-native/google-maps';
 
 @IonicPage()
@@ -32,9 +31,7 @@ export class RestaurantsPage {
   constructor(public googleMaps: GoogleMaps, public platform: Platform) {}
 
   public ngAfterViewInit() {
-    this.platform.ready().then(() => {
-      this.loadMap();
-    });
+    this.loadMap();
   }
 
   public loadMap() {
