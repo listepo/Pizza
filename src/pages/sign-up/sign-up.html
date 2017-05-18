@@ -12,25 +12,35 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-
-    <ion-item>
-      <ion-label floating>Name</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-  </ion-list>
-  <div padding>
-    <button ion-button color="primary" block>Let's go</button>
-  </div>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <div *ngIf="hasError('name', 'required')">
+        <div padding>Name is required</div>
+      </div>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <div *ngIf="hasError('email', 'required')">
+        <div padding>Email is required</div>
+      </div>
+      <div *ngIf="hasError('email', 'email')">
+        <div padding>Invalid email</div>
+      </div>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <div *ngIf="hasError('password', 'required')">
+        <div padding>Password is required</div>
+      </div>
+    </ion-list>
+    <div padding>
+      <button type="submit" ion-button color="primary" block [disabled]="signUpForm.invalid">Let's go</button>
+    </div>
+  </form>
 </ion-content>

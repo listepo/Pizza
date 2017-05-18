@@ -17,4 +17,12 @@ export class AuthProvider {
   public signIn(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
+  public signUp(name: string, email: string, password: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((user: firebase.User) => {
+      return user.updateProfile({
+        displayName: name,
+        photoURL: null,
+      });
+    });
+  }
 }

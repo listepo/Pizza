@@ -26,6 +26,7 @@ export class SignInPage implements OnInit {
     });
   }
 
+  // TODO: replace on ngxErrors
   public hasError(field, type): boolean {
     return this.signInForm.get(field).hasError(type) && (this.signInForm.get(field).touched);
   }
