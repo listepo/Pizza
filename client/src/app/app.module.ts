@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { GoogleMaps, Geocoder } from '@ionic-native/google-maps';
 
 import { MyApp } from './app.component';
 import { AuthProvider } from '../providers/auth/auth';
@@ -28,6 +30,9 @@ import config from '../configs/development';
     SplashScreen,
     AuthProvider,
     AngularFireAuth,
+    AngularFireDatabase,
+    GoogleMaps,
+    Geocoder,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ],
 })

@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, ViewController, NavController, AlertController } from 'ionic-angular';
+import {
+  IonicPage,
+  ViewController,
+  NavController,
+  AlertController,
+  LoadingController,
+} from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -15,6 +21,7 @@ export class SignInPage implements OnInit {
     private viewCtrl: ViewController,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
     public authProvider: AuthProvider,
     private fb: FormBuilder,
   ) {}
@@ -33,9 +40,13 @@ export class SignInPage implements OnInit {
 
   public signIn() {
     const { email, password } = this.signInForm.value;
+    const loader = this.loadingCtrl.create();
+    loader.present();
     this.authProvider.signIn(email, password).then(() => {
+      loader.dismiss();
       this.navCtrl.setRoot('MenuPage');
     }).catch((error) => {
+      loader.dismiss();
       this.alertCtrl.create({
         title: 'Error',
         message: error.message,
