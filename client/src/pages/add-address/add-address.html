@@ -3,7 +3,7 @@
   <ion-navbar>
     <ion-title>Add Address</ion-title>
     <ion-buttons end>
-      <button ion-button [disabled]="!isSelected">
+      <button ion-button [disabled]="!isSelected" (click)="saveAddress()">
         Save
       </button>
     </ion-buttons>
@@ -15,12 +15,12 @@
 <ion-content padding>
 
   <ion-list radio-group [(ngModel)]="selectedAddress">
-    <ion-item *ngFor="let address of addresses | async; let i = index">
+    <ion-item *ngFor="let address of addresses | async">
       <ion-label>
         <h2>{{address.thoroughfare}}, {{address.subThoroughfare}}</h2>
         <p>{{address.country}}, {{address.adminArea}}</p>
       </ion-label>
-      <ion-radio value="{{i}}"></ion-radio>
+      <ion-radio (ionSelect)="onSelectAddress(address)"></ion-radio>
     </ion-item>  
   </ion-list>
 </ion-content>

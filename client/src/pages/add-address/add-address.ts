@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Searchbar } from 'ionic-angular';
 import { Geocoder, GeocoderResult } from '@ionic-native/google-maps';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 
 @IonicPage()
@@ -18,6 +19,7 @@ export class AddAddressPage {
   constructor(
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
+    private db: AngularFireDatabase,
     public gecodoer: Geocoder,
   ) {}
 
@@ -33,6 +35,15 @@ export class AddAddressPage {
       loader.dismiss();
       searchbar.setFocus();
     });
+  }
+
+  public onSelectAddress(address: GeocoderResult) {
+    this.selectedAddress = address;
+  }
+
+  public saveAddress() {
+    this.db.list('/addresses').push(this.selectedAddress);
+    this.navCtrl.pop();
   }
 
 }
