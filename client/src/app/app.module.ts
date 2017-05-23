@@ -11,10 +11,12 @@ import { GoogleMaps, Geocoder } from '@ionic-native/google-maps';
 import { MyApp } from './app.component';
 import { AuthProvider } from '../providers/auth/auth';
 import config from '../configs/development';
+// import { AddressPipe } from '../pipes/address/address';
 
 @NgModule({
   declarations: [
     MyApp,
+    // AddressPipe,
   ],
   imports: [
     BrowserModule,

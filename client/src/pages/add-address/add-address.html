@@ -2,16 +2,25 @@
 
   <ion-navbar>
     <ion-title>Add Address</ion-title>
+    <ion-buttons end>
+      <button ion-button [disabled]="!isSelected">
+        Save
+      </button>
+    </ion-buttons>
   </ion-navbar>
-  <ion-searchbar (ionInput)="findAddress()" [(ngModel)]="address"></ion-searchbar>
+  <ion-searchbar #searchbar debounce="400" (ionInput)="findAddress(searchbar)" [(ngModel)]="searchAddress"></ion-searchbar>
 </ion-header>
 
 
 <ion-content padding>
 
-  <!--<ion-list>
-    <ion-item *ngFor="let item of items">
-      {{ item }}
-    </ion-item>
-  </ion-list>-->
+  <ion-list radio-group [(ngModel)]="selectedAddress">
+    <ion-item *ngFor="let address of addresses | async; let i = index">
+      <ion-label>
+        <h2>{{address.thoroughfare}}, {{address.subThoroughfare}}</h2>
+        <p>{{address.country}}, {{address.adminArea}}</p>
+      </ion-label>
+      <ion-radio value="{{i}}"></ion-radio>
+    </ion-item>  
+  </ion-list>
 </ion-content>
