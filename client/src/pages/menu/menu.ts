@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
@@ -11,9 +11,16 @@ import * as firebase from 'firebase';
 export class MenuPage {
   public pizzaList: FirebaseListObservable<any>;
   constructor(
-    public db: AngularFireDatabase,
-  ) {
+    private db: AngularFireDatabase,
+    private loadingCtrl: LoadingController,
+
+  ) {}
+
+  public ionViewDidLoad() {
+    const loader = this.loadingCtrl.create();
+    loader.present();
     this.pizzaList = this.db.list('/pizza');
+    this.pizzaList.subscribe(() => loader.dismiss());
   }
 
 }

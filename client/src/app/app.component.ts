@@ -22,11 +22,10 @@ export class MyApp {
     public authProvider: AuthProvider,
     ) {
     platform.ready().then(() => {
-      this.authProvider.afAuth.authState.subscribe(() => {
-        statusBar.styleDefault();
-        splashScreen.hide();
-      });
+      statusBar.styleDefault();
+      splashScreen.hide();
     });
+    // this.authProvider.afAuth.authState.subscribe(() => {});
   }
 
   public openPage(page: string) {
