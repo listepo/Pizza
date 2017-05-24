@@ -49,8 +49,4 @@ export class SignUpPage implements OnInit {
       }).present();
     });
   }
-
-  public closeModalPage() {
-    this.viewCtrl.dismiss();
-  }
 }

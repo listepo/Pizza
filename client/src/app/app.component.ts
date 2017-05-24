@@ -9,7 +9,7 @@ import { AuthProvider } from '../providers/auth/auth';
   templateUrl: 'app.html',
 })
 export class MyApp {
-  public rootPage: any = 'AuthPage';
+  public rootPage: any = 'MenuPage';
   @ViewChild(Nav) private nav: Nav;
   public get isLoggedIn() {
     return this.authProvider.isLoggedIn;
@@ -25,7 +25,13 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    // this.authProvider.afAuth.authState.subscribe(() => {});
+    this.authProvider.afAuth.authState.subscribe(() => {
+      if (this.authProvider.isLoggedIn) {
+        this.rootPage = 'MenuPage';
+      } else {
+        this.rootPage = 'AuthPage';
+      }
+    });
   }
 
   public openPage(page: string) {

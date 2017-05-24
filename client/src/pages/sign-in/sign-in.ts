@@ -43,8 +43,9 @@ export class SignInPage implements OnInit {
     const loader = this.loadingCtrl.create();
     loader.present();
     this.authProvider.signIn(email, password).then(() => {
-      loader.dismiss();
-      this.navCtrl.setRoot('MenuPage');
+      loader.dismiss().then(() => {
+        this.navCtrl.setRoot('MenuPage');
+      });
     }).catch((error) => {
       loader.dismiss();
       this.alertCtrl.create({
@@ -53,9 +54,5 @@ export class SignInPage implements OnInit {
         buttons: ['Ok'],
       }).present();
     });
-  }
-
-  public closeModalPage() {
-    this.viewCtrl.dismiss();
   }
 }

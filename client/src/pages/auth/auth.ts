@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController } from 'ionic-angular';
+import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -7,13 +7,13 @@ import { IonicPage, ModalController } from 'ionic-angular';
   templateUrl: 'auth.html',
 })
 export class AuthPage {
-  constructor(public modalCtrl: ModalController) {}
+  constructor(private navCtrl: NavController) {}
 
   public openSignInPage() {
-    this.modalCtrl.create('SignInPage').present();
+    this.navCtrl.push('SignInPage');
   }
 
   public openSignUpPage() {
-    this.modalCtrl.create('SignUpPage').present();
+    this.navCtrl.push('SignUpPage');
   }
 }

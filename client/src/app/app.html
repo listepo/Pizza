@@ -16,10 +16,10 @@
       <button *ngIf="isLoggedIn" menuClose ion-item (click)="openPage('ProfilePage')">
         Profile
       </button>
-      <button menuClose ion-item (click)="openPage('MyOrdersPage')">
+      <button *ngIf="isLoggedIn" menuClose ion-item (click)="openPage('MyOrdersPage')">
         My orders
       </button>
-      <button menuClose ion-item (click)="openPage('MyAddressesPage')">
+      <button *ngIf="isLoggedIn" menuClose ion-item (click)="openPage('MyAddressesPage')">
         My addresses
       </button>
       <button menuClose ion-item (click)="openPage('RestaurantsPage')">
