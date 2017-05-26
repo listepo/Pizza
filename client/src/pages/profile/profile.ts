@@ -1,5 +1,14 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  IonicPage,
+  ViewController,
+  NavController,
+  AlertController,
+  LoadingController,
+} from 'ionic-angular';
+
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -7,8 +16,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  public profileForm: FormGroup;
+  constructor(
+    private viewCtrl: ViewController,
+    private navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    public authProvider: AuthProvider,
+    private fb: FormBuilder,
+  ) {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public ngOnInit(): void {
+    this.profileForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
+  // TODO: replace on ngxErrors
+  public hasError(field, type): boolean {
+    return this.profileForm.get(field).hasError(type) && (this.profileForm.get(field).touched);
   }
 
+  public updateProfile() {}
 }
