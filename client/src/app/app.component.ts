@@ -1,5 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, MenuController } from 'ionic-angular';
+import {
+  Platform,
+  Nav,
+  MenuController,
+  AlertController,
+} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -18,6 +23,7 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
+    private alertCtrl: AlertController,
     public menu: MenuController,
     public authProvider: AuthProvider,
     ) {
@@ -39,6 +45,19 @@ export class MyApp {
   }
 
   public signOut() {
-    this.authProvider.afAuth.auth.signOut();
+    this.alertCtrl.create({
+      title: 'Are you sure?',
+      subTitle: 'Do you want to log out?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+        },
+        {
+          text: 'Yes',
+          handler: () => { this.authProvider.afAuth.auth.signOut(); },
+        },
+      ],
+    }).present();
   }
 }
