@@ -6,7 +6,7 @@ import * as firebase from 'firebase/app';
 export class AuthProvider {
   private user: firebase.User;
   public get currentUser(): firebase.User {
-    return this.currentUser;
+    return this.user;
   }
   public get isLoggedIn(): boolean {
     return this.user !== null;
