@@ -30,13 +30,6 @@
       <div *ngIf="hasError('email', 'email')">
         <div padding>Invalid email</div>
       </div>
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input formControlName="password" type="password"></ion-input>
-      </ion-item>
-      <div *ngIf="hasError('password', 'required')">
-        <div padding>Password is required</div>
-      </div>
     </ion-list>
     <div padding>
       <button type="submit" ion-button color="primary" block [disabled]="profileForm.invalid">Update</button>

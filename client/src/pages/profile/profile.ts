@@ -15,22 +15,21 @@ import { AuthProvider } from '../../providers/auth/auth';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
   public profileForm: FormGroup;
   constructor(
     private viewCtrl: ViewController,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    public authProvider: AuthProvider,
     private fb: FormBuilder,
+    public authProvider: AuthProvider,
   ) {}
 
   public ngOnInit(): void {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
     });
   }
   // TODO: replace on ngxErrors
